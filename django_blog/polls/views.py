@@ -1,8 +1,16 @@
 from django.shortcuts import HttpResponse
+from django.template import loader, RequestContext
+
+from polls.models import Question
 
 
 def index(request):
-    return HttpResponse("Hello, Django")
+    question_list = Question.objects.order_by('-pub_date')[:5]
+    template = loader.get_template('polls/index.html')
+    content = RequestContext(request, {
+        'latest_question_list': question_list
+    })
+    return HttpResponse(template.render(content))
 
 
 def detail(request, question_id):
