@@ -14,7 +14,12 @@ def index(request):
 
 
 def detail(request, question_id):
-    return HttpResponse("You're looking at question %s." % question_id)
+    question = Question.objects.get(id=question_id)
+    template = loader.get_template('polls/details.html')
+    content = RequestContext(request, {
+        'question': question
+    })
+    return HttpResponse(template.render(content))
 
 
 def results(request, question_id):
