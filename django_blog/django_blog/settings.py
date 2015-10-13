@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     # 3rd part app
     'bootstrap3',
     # local app
+    'blog',
     'polls',
 )
 
