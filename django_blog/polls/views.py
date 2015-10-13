@@ -42,5 +42,10 @@ def vote(request, question_id):
 
     return HttpResponse("You're voting on question %s." % question_id)
 
+
 def bootstrap(request):
     return render(request, 'polls/bootstrap.html', {})
+
+
+def login(request):
+    return render(request, 'blog/index.html', {})
