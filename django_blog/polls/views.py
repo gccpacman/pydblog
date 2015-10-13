@@ -41,3 +41,6 @@ def vote(request, question_id):
         selected_choice.save()
 
     return HttpResponse("You're voting on question %s." % question_id)
+
+def bootstrap(request):
+    return render(request, 'polls/bootstrap.html', {})
