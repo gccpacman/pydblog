@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 3rd part app
-    'bootstrap3',
+    # 'bootstrap3',
     # local app
     'blog',
     'polls',
