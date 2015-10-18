@@ -1,3 +1,4 @@
+{% load django_markdown %}
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog</title>
+    <title>天才和蠢货</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'blog/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -52,10 +53,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="{% url 'blog:index' %}">Home</a>
+                        <a href="{% url 'blog:index' %}">主页</a>
                     </li>
                     <li>
-                        <a href="{% url 'blog:about' %}">About</a>
+                        <a href="{% url 'blog:about' %}">关于我</a>
                     </li>
                     <li>
                         <a href="post.html">Sample Post</a>
@@ -77,9 +78,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
+                        <h1>天才和蠢货</h1>
                         <hr class="small">
-                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                        <span class="subheading">...又开始写一些无关紧要的事了</span>
                     </div>
                 </div>
             </div>
@@ -90,51 +91,22 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                {% block blog_entries %}
+                {% for object in object_list %}
                 <div class="post-preview">
                     <a href="post.html">
                         <h2 class="post-title">
-                            Man must explore, and this is exploration at its greatest
+                            {{ object.title }}
                         </h2>
                         <h3 class="post-subtitle">
-                            Problems look mighty small from 150 miles up
+                            {{ object.body|markdown }}
                         </h3>
                     </a>
-                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 24, 2014</p>
+                    <p class="post-meta">Tagged under <a href="#">{{  object.tags.all|join:", " }}</a> on {{ object.created }} </p>
                 </div>
                 <hr>
-                <div class="post-preview">
-                    <a href="post.html">
-                        <h2 class="post-title">
-                            I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
-                        </h2>
-                    </a>
-                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 18, 2014</p>
-                </div>
-                <hr>
-                <div class="post-preview">
-                    <a href="post.html">
-                        <h2 class="post-title">
-                            Science has not yet mastered prophecy
-                        </h2>
-                        <h3 class="post-subtitle">
-                            We predict too much for the next year and yet far too little for the next ten.
-                        </h3>
-                    </a>
-                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</p>
-                </div>
-                <hr>
-                <div class="post-preview">
-                    <a href="post.html">
-                        <h2 class="post-title">
-                            Failure is not an option
-                        </h2>
-                        <h3 class="post-subtitle">
-                            Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-                        </h3>
-                    </a>
-                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
-                </div>
-                <hr>
+                {% endfor %}
+                {% endblock %}
                 <!-- Pager -->
                 <ul class="pager">
                     <li class="next">
