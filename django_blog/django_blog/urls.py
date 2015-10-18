@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^', include('blog.urls', namespace='blog')),
     url(r'^polls/', include('polls.urls', namespace='polls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^markdown/', include("django_markdown.urls")),
 ]

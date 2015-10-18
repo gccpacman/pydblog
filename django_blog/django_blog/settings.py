@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     # local app
     'blog',
     'polls',
+    'django_markdown',
 )
 
 MIDDLEWARE_CLASSES = (
