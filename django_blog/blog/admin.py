@@ -1,5 +1,6 @@
+from __future__ import absolute_import, unicode_literals
 from django.contrib import admin
-from . import models
+from blog import models
 from django_markdown.admin import MarkdownModelAdmin
 from django_markdown.widgets import AdminMarkdownWidget
 from django.db.models import TextField
