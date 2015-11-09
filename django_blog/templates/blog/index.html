@@ -102,11 +102,20 @@
                 {% endfor %}
                 {% endblock %}
                 <!-- Pager -->
-                <ul class="pager">
-                    <li class="next">
-                        <a href="#">Older Posts &rarr;</a>
-                    </li>
-                </ul>
+                {% if is_paginated %}
+                    <ul class="pager">
+                        {% if page_obj.has_previous %}
+                            <li class="previous">
+                                <a href="/?page={{ page_obj.previous_page_number }}">Newer Posts &rarr;</a>
+                            </li>
+                        {% endif %}
+                        {% if page_obj.has_next %}
+                            <li class="next">
+                                <a href="/?page={{ page_obj.next_page_number }}">Older Posts &rarr;</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                {% endif  %}
             </div>
         </div>
     </div>

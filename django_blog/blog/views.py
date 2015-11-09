@@ -7,7 +7,7 @@ class BlogAbout(generic.TemplateView):
     template_name = "blog/about.html"
 
 class BlogIndex(generic.ListView):
-    queryset = models.Entry.objects.published()
+    model = models.Entry
     template_name = "blog/index.html"
     paginate_by = 4 
 
