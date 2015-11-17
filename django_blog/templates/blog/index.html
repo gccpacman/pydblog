@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="site-heading">
-                        <h1>About Nothing</h1>
+                        <h1>Hello， 测试站</h1>
                         <hr class="small">
                         <span class="subheading">You could call my life on the road, prior to say I'd dreamed of...</span>
                     </div>
@@ -37,10 +37,10 @@
                             {{ object.title }}
                         </h2>
                         <h3 class="post-subtitle">
-                            {{ object.body|markdown }}
+                            {{  object.tags.all|join:", " }}
                         </h3>
                     </a>
-                    <p class="post-meta">标签：{{  object.tags.all|join:", " }}  | 时间： {{ object.created }} </p>
+                    <p class="post-meta">{{ object.created }} </p>
                 </div>
                 <hr>
                 {% endfor %}

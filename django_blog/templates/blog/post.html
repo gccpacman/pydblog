@@ -19,7 +19,7 @@
                     <div class="post-heading">
                         <h1>{{ object.title }}</h1>
                         <h2 class="subheading"></h2>
-                        <span class="meta">Tagged under <a href="#">{{ object.tags.all|join:" " }}</a> on {{ object.created }}</span>
+                        <span class="meta"><a href="#">{{ object.tags.all|join:" " }}</a> </span>
                     </div>
                 </div>
             </div>
@@ -32,11 +32,14 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     {{ object.body|markdown  }}
+<p class="post-meta">{{ object.created }} </p>
                 </div>
             </div>
+		
         </div>
     </article>
-
+	
+    
     <hr>
 
     <!-- Footer -->
