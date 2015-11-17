@@ -3,8 +3,8 @@ from django.conf.urls import include, url
 from blog import views
 
 urlpatterns = [
-    url(r'^djangoblog$', views.BlogIndex.as_view(), name='index'),
-    url(r'^djangoblog/about/$', views.BlogAbout.as_view(), name='about'),
-    url(r'^djangoblog/post/(?P<slug>[-\w]+)$', views.BlogDetail.as_view(), name='post'),
-    url(r'^djangoblog/gallery/$', views.BlogGallery.as_view(), name='gallery'),
+    url(r'^$', views.BlogIndex.as_view(), name='index'),
+    url(r'^about/$', views.BlogAbout.as_view(), name='about'),
+    url(r'^post/(?P<slug>[-\w]+)$', views.BlogDetail.as_view(), name='post'),
+    url(r'^gallery/$', views.BlogGallery.as_view(), name='gallery'),
 ]
