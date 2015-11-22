@@ -121,4 +121,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR,  "static"),
 )
 
+STATIC_ROOT = "/webapps/static/"
+
 TEMPLATE_DEBUG = True
