@@ -9,7 +9,7 @@ class BlogAbout(generic.TemplateView):
 class BlogIndex(generic.ListView):
     model = models.Entry
     template_name = "blog/index.html"
-    paginate_by = 4 
+    paginate_by = 5 
 
 class BlogDetail(generic.DetailView):
     model = models.Entry
