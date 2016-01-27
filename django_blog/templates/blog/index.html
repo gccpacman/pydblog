@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Powered By Django, Bootstrap</a>
+                <a class="navbar-brand" href="/">Powered By Django, Bootstrap, Postgresql</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -106,12 +106,12 @@
                     <ul class="pager">
                         {% if page_obj.has_previous %}
                             <li class="previous">
-                                <a href="/?page={{ page_obj.previous_page_number }}">Newer Posts &rarr;</a>
+                                <a href="/?page={{ page_obj.previous_page_number }}">更新的博文 &rarr;</a>
                             </li>
                         {% endif %}
                         {% if page_obj.has_next %}
                             <li class="next">
-                                <a href="/?page={{ page_obj.next_page_number }}">Older Posts &rarr;</a>
+                                <a href="/?page={{ page_obj.next_page_number }}">更早的博文 &rarr;</a>
                             </li>
                         {% endif %}
                     </ul>
