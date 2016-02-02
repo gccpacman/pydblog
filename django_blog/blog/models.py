@@ -11,9 +11,11 @@ class Tag(models.Model):
     def __str__(self):
         return self.slug
 
+
 class EntryQuerySet(models.QuerySet):
     def published(self):
         return self.filter(publish=True)
+
 
 @python_2_unicode_compatible
 class Entry(models.Model):

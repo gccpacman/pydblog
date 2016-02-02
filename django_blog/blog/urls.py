@@ -1,6 +1,8 @@
 from __future__ import absolute_import, unicode_literals
-from django.conf.urls import include, url
+
+from django.conf.urls import url
 from blog import views
+
 
 urlpatterns = [
     url(r'^$', views.BlogIndex.as_view(), name='index'),
