@@ -55,3 +55,7 @@ docs/_build/
 
 # idea
 .idea/
+
+# vim
+*.swp
+
