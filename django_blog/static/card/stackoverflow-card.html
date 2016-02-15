@@ -1,0 +1,191 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="stackoverflow-card">
+
+  <template>
+    <style>
+      .so-card-theme-default .so-card,.so-card-theme-minimal .so-card {
+        background-color:#fff;
+        font-family:sans-serif;
+        font-size: 16.5px;
+        position:relative;
+        border:1px solid #efefef;
+        box-shadow:0 0 3px rgba(0,0,0,.2);
+        display:block;
+        padding: 10.5px 18px;
+        height: 227.5px;
+      }
+      .so-card-theme-default .so-logo,.so-card-theme-minimal .so-logo {
+        position:absolute;
+        top:5px;
+        left:5px;
+      }
+      .so-card-theme-default .so-logo img,.so-card-theme-minimal .so-logo img {
+        width:20px;
+      }
+      .so-card-theme-default .so-display-name,.so-card-theme-minimal .so-display-name {
+        text-align:center;
+        margin:0;
+      }
+      .so-card-theme-default .so-content,.so-card-theme-default .so-footer,.so-card-theme-default .so-header,.so-card-theme-minimal .so-content,.so-card-theme-minimal .so-footer,.so-card-theme-minimal .so-header {
+        border-bottom:1px solid #eee;
+        padding:13px 0;
+      }
+      .so-card-theme-default .so-header,.so-card-theme-minimal .so-header {
+        padding-top:0;
+      }
+      .so-card-theme-default .so-footer,.so-card-theme-minimal .so-footer {
+        text-align:center;
+        border-bottom:0;
+        padding-bottom:0;
+      }
+      .so-card-theme-default .so-reputation,.so-card-theme-minimal .so-reputation {
+        font-size:2em;
+        text-align:center;
+        color:#e68a00;
+        margin:0;
+      }
+      .so-card-theme-default .so-reputation-label,.so-card-theme-minimal .so-reputation-label {
+        color:#777;
+      }
+      .so-card-theme-default .so-badges-label,.so-card-theme-minimal .so-badges-label {
+        color:#666;
+        font-size:.8em;
+        margin-right:10px;
+      }
+      .so-card-theme-default .so-badge,.so-card-theme-minimal .so-badge {
+        display:inline-block;
+        width:10px;
+        height:10px;
+        border-radius:50%;
+        margin-right:3px;
+      }
+      .so-card-theme-default .so-badge-wrapper,.so-card-theme-minimal .so-badge-wrapper {
+        margin-right:10px;
+      }
+      .so-card-theme-default .so-badge-gold,.so-card-theme-minimal .so-badge-gold {
+        background-color:#ffcd03;
+      }
+      .so-card-theme-default .so-badge-silver,.so-card-theme-minimal .so-badge-silver {
+        background-color:#c5c5c5;
+      }
+      .so-card-theme-default .so-badge-bronze,.so-card-theme-minimal .so-badge-bronze {
+        background-color:#c96;
+      }
+      .so-card-theme-default .so-profile-link,.so-card-theme-minimal .so-profile-link {
+        position:absolute;
+        left:0;
+        right:0;
+        top:0;
+        bottom:0;
+      }
+      .so-card-theme-default .so-profile-picture-container img {
+        display:inline-block;
+        width:75px;
+        border-radius:50%;
+      }
+      .so-card-theme-minimal .so-profile-picture-container {
+        display:none;
+      }
+      .so-card-theme-default .so-content,.so-card-theme-minimal .so-content,.so-card-theme-default .so-profile-picture-container {
+        text-align:center;
+      }
+    </style>
+
+    <div id="soCardWidget" class="so-card-theme-default">
+      <div class="so-card">
+          <a href="{{profileUrl}}" target="_blank" class="so-profile-link"></a>
+          <div class="so-header"><span class="so-logo"><img src="{{logoUrl}}" alt=""></span>
+            <div class="so-profile-picture-container"><img src="{{profileImage}}" alt=""></div>
+            <h4 class="so-display-name">{{displayName}}</h4></div>
+          <div class="so-content">
+            <p class="so-reputation">{{reputation}}</p>
+            <small class="so-reputation-label">Stackoverflow reputation</small>
+          </div>
+          <div class="so-footer">
+            <span class="so-badges-label">Badges</span>
+            <span class="so-badge-wrapper">
+              <span class="so-badge so-badge-gold"></span>
+              <span class="so-badge-count">{{badgeCounts.gold}}</span>
+            </span>
+            <span class="so-badge-wrapper">
+              <span class="so-badge so-badge-silver"></span>
+              <span class="so-badge-count">{{badgeCounts.silver}}</span>
+            </span>
+            <span class="so-badge-wrapper">
+              <span class="so-badge so-badge-bronze"></span>
+              <span class="so-badge-count">{{badgeCounts.bronze}}</span>
+            </span>
+          </div>
+      </div>
+    </div>
+
+  </template>
+
+</dom-module>
+
+<script>
+    (function() {
+      'use strict';
+
+      Polymer({
+          is: 'stackoverflow-card',
+          properties: {
+            useriuserIdd: String,
+            profileUrl: {
+              type: String,
+              computed: 'computeProfileUrl(userId)'
+            },
+            logoUrl: {
+              type: String,
+              value: "//cdn.rawgit.com/mudassir0909/stackoverflow-card/master/assets/img/so-icon.png"
+            },
+            profileImage: {
+              type: String,
+              notify: true
+            },
+            displayName: {
+              type: String,
+              notify: true
+            },
+            reputation: {
+              type: Number,
+              notify: true
+            },
+            badgeCounts: {
+              type: Object,
+              notify: true
+            }
+          },
+          ready: function() {
+            var self = this;
+            var callback = this.onDataReceived;
+            var container = this.$.soCardWidget,
+                request = new XMLHttpRequest(),
+                requestUrl = "//api.stackexchange.com/2.2/users/" + this.userId + '/?site=stackoverflow';
+            request.onreadystatechange = function() {
+                var data;
+                if (request.readyState === 4) {
+                    if (request.status === 200) {
+                      data = JSON.parse(request.responseText).items[0];
+                      callback(self, data);
+                    }
+                }
+            };
+            request.open('GET', requestUrl, true);
+            request.send();
+          },
+          onDataReceived: function(self, data) {
+            if (data) {
+              self.profileImage = data.profile_image;
+              self.displayName = data.display_name;
+              self.reputation = data.reputation;
+              self.badgeCounts = data.badge_counts;  
+            }
+          },
+          computeProfileUrl: function(userId) {
+            return "//stackoverflow.com/users/" + this.userId; 
+          }
+        });
+    })();
+</script>
