@@ -47,4 +47,7 @@ python 3.5
 [Django Tutorial](https://docs.djangoproject.com/en/1.8/intro/tutorial03/)
 [A clean Bootstrap blog theme created by Start Bootstrap](https://github.com/IronSummitMedia/startbootstrap-clean-blog)
 
+# Installation (Production)
+
+  [uwsgi + Nginx to start up a Django Project](http://realhu.tk/post/uwsgidjango)
 
