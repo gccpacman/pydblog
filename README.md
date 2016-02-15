@@ -1,8 +1,8 @@
 # Software Version:
 
-Django 1.8 
-
-python 3.5
+    Django 1.8 
+   
+    python 3.5
 
 
 # installation (Development)
@@ -10,7 +10,9 @@ python 3.5
 1. install ```postgresql``` and create a database called ```django_blog``:
 
     sudo pacman -S postgresql
+
     su postgres
+
     createdb django_blog
 
         PS: follow [PostgreSQL - arch wiki](http://wiki.archlinux.org/index.php/PostgreSQL) OR other instruction if you are using other platform.
@@ -21,10 +23,9 @@ python 3.5
     sudo pacman -S python, python-pip
     sudo pip install virtualenv virtualenvwrapper
 
-3. create a virtualenv:
+3. create a ```virtualenv``` environment:
 
     mkvirtualenv pydblog
-    cd django_blog/
 
 
 4. install python dependencies:
@@ -34,7 +35,9 @@ python 3.5
 5. migrate database:
 
     cd django_blog
+
     python manage.py makemigration
+
     python manage.py syncdb
 
 6. run the web server:
@@ -43,11 +46,12 @@ python 3.5
 
 7. open your browser and enter url: http://127.0.0.1:8000
 
+# Installation (Production)
+
+  I've post my method in my blog: [uwsgi + Nginx to start up a Django Project](http://realhu.tk/post/uwsgidjango)
+
 # References:
 [Django Tutorial](https://docs.djangoproject.com/en/1.8/intro/tutorial03/)
 [A clean Bootstrap blog theme created by Start Bootstrap](https://github.com/IronSummitMedia/startbootstrap-clean-blog)
 
-# Installation (Production)
-
-  [uwsgi + Nginx to start up a Django Project](http://realhu.tk/post/uwsgidjango)
 
