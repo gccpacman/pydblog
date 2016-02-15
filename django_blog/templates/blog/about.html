@@ -1,4 +1,6 @@
 {% load staticfiles %}
+{% load django_markdown %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,13 +31,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 
-                    {{ about  }}
-              昵称：realhu / gccpacman
-              开发语言： Python / Java / Javascript
-              后端框架： Django / Peewee / Flask / Spring / Struts / Hibernate
-              前段框架： AngularJS / BootStrap
-              操作系统： Linux / Windows
-              硬件：树莓派，Openwrt，Android
+            {{ about | markdown }}
 
             </div>
             <hr>
