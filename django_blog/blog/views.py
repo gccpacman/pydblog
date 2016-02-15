@@ -6,6 +6,12 @@ from blog import models
 class BlogAbout(generic.TemplateView):
     template_name = "blog/about.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(BlogAbout, self).get_context_data(**kwargs)
+        # import ipdb; ipdb.set_trace()
+        context['about'] = models.About.objects.all()[0]
+        return context
+
 
 class BlogIndex(generic.ListView):
     model = models.Entry
