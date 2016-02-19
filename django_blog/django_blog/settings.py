@@ -23,10 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'mawm@u3@u)x=udm(h130s*kyra^e^uorz8q+aux)_=oy$0um=0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['realhu.tk']
-
+ALLOWED_HOSTS = ['realhu.tk', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -43,6 +43,7 @@ INSTALLED_APPS = (
     'blog',
     'polls',
     'django_markdown',
+    'dbbackup',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -121,6 +122,13 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR,  "static"),
 )
 
-STATIC_ROOT = "/webapps/static/"
+# STATIC_ROOT = "/webapps/static/"
 
 TEMPLATE_DEBUG = True
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+
+
+DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
+DBBACKUP_STORAGE_OPTIONS = {'location': '/home/arch/temp/dbbackup'}
+
