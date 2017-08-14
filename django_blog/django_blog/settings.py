@@ -43,7 +43,6 @@ INSTALLED_APPS = (
     'blog',
     'polls',
     'django_markdown',
-    'dbbackup',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -102,7 +101,7 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'zh-CN'
+# LANGUAGE_CODE = 'zh-CN'
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -128,7 +127,6 @@ TEMPLATE_DEBUG = True
 
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-
-DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
-DBBACKUP_STORAGE_OPTIONS = {'location': '/home/arch/temp/dbbackup'}
+# DBBACKUP_STORAGE = 'dbbackup.storage.filesystem_storage'
+# DBBACKUP_STORAGE_OPTIONS = {'location': '/home/arch/temp/dbbackup'}
 

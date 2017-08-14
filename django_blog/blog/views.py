@@ -9,7 +9,7 @@ class BlogAbout(generic.TemplateView):
     def get_context_data(self, **kwargs):
         context = super(BlogAbout, self).get_context_data(**kwargs)
         # import ipdb; ipdb.set_trace()
-        context['about'] = models.About.objects.all()[0]
+        context['about'] = models.About.objects.all().first()
         return context
 
 

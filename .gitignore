@@ -59,3 +59,5 @@ docs/_build/
 # vim
 *.swp
 *~
+
+db.sqlite3
